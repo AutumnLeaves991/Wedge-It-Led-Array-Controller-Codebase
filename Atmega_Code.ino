@@ -35,16 +35,18 @@ void loop() {
       currentMode++;
     }
     
-    if(currentMode == 1){
+    if(currentMode == 0){
       digitalWrite(ledArray1_pin, HIGH);
     }
-    if(currentMode == 2){
+    if(currentMode == 1){
       digitalWrite(ledArray2_pin, HIGH);
     }
-    if(currentMode == 3){
+    if(currentMode == 2){
       digitalWrite(ledArray3_pin, HIGH);
     }
-  
+    if(currentMode == 3){
+      // Do nothing, as All_Off is triggered by default.
+    }
   }  
     
   buttonState_previous = buttonState_current;
