@@ -57,6 +57,7 @@ void loop() {
     if(currentMode == 3){
       // Do nothing, as All_Off is triggered by default.
     }
+    delay(50);
   }  
     
   buttonState_previous = buttonState_current;
