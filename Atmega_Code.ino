@@ -1,4 +1,15 @@
 /*
+ * Released under the Creative Commons 
+ * Attribution Share-Alike 3.0 License
+ * https://creativecommons.org/licenses/by-sa/3.0/
+ * 
+ * Douglas M. Reilly
+ * 4/5/2016
+ */
+
+
+
+/*
  * Device Modes
  * -------------------
  * 0      LedArray1 ON
