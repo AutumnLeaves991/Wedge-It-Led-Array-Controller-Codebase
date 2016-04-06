@@ -18,10 +18,10 @@
  * 3           All Off
  */
 
-const int button_pin    = 0;
-const int ledArray1_pin = 1;
-const int ledArray2_pin = 2;
-const int ledArray3_pin = 3;
+const int button_pin     = 0;
+const int ledArray1_pin  = 1;
+const int ledArray2_pin  = 2;
+const int ledArray3_pin  = 3;
 
 int currentMode          = 0;
 int buttonState_current  = 0;
