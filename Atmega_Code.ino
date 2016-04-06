@@ -5,8 +5,7 @@
  * 
  * Douglas M. Reilly
  * 4/5/2016
- */
-
+*/
 
 
 /*
@@ -16,7 +15,7 @@
  * 1      LedArray2 ON 
  * 2      LedArray3 ON
  * 3           All Off
- */
+*/
 
 const int button_pin     = 0;
 const int ledArray1_pin  = 1;
