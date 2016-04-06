@@ -34,8 +34,19 @@ void loop() {
     else{
       currentMode++;
     }
-  }    
-
+    
+    if(currentMode == 1){
+      digitalWrite(ledArray1_pin, HIGH);
+    }
+    if(currentMode == 2){
+      digitalWrite(ledArray2_pin, HIGH);
+    }
+    if(currentMode == 3){
+      digitalWrite(ledArray3_pin, HIGH);
+    }
+  
+  }  
+    
   buttonState_previous = buttonState_current;
 }
 
