@@ -41,6 +41,27 @@ void setup() {
   pinMode(ledArray1_pin, OUTPUT);
   pinMode(ledArray2_pin, OUTPUT);
   pinMode(ledArray3_pin, OUTPUT);
+  
+  digitalWrite(ledArray1_pin, HIGH);
+  delay(500);
+  digitalWrite(ledArray2_pin, HIGH);
+  delay(500);
+  digitalWrite(ledArray3_pin, HIGH);
+  delay(500);
+  All_Off();
+  for(int i = 0;i < 10;i++){
+   All_On();
+   delay(50);
+   All_Off();
+   delay(50); 
+  }
+  delay(100);
+  for(int i = 0;i < 2;i++){
+   All_On();
+   delay(50);
+   All_Off();
+   delay(50); 
+  }  
 }
 
 void loop() {
@@ -51,6 +72,7 @@ void loop() {
 //  Serial.println(timeDelta(currentTime, previousTime)); //Debug
 
   if(timeDelta(currentTime, previousTime) >= pulseRate){
+    previousTime = currentTime;
     if(currentMode == 0){
       //All off
     }
@@ -72,6 +94,7 @@ void loop() {
   }
 
   if((buttonState_current == 1) && (buttonState_current != buttonState_previous)){
+    previousTime = currentTime;
     Serial.println(currentMode);
     if(currentMode == 3){currentMode = 0;}
     else{currentMode++;}
@@ -79,7 +102,6 @@ void loop() {
   }
 
   
-  previousTime         = currentTime;
   buttonState_previous = buttonState_current;
 }
 
