@@ -4,27 +4,34 @@
  * https://creativecommons.org/licenses/by-sa/3.0/
  * 
  * Douglas M. Reilly
- * 4/5/2016
+ * 4/7/2016
 */
 
 
 /*
  * Device Modes
  * -------------------
- * 0      LedArray1 ON
- * 1      LedArray2 ON 
- * 2      LedArray3 ON
- * 3           All Off
+ * 0      All Off
+ * 1      LedArray1 Pulse
+ * 2      LedArray2 Pulse
+ * 3      LedArray3 Pulse
 */
 
-const int button_pin     = 0;
-const int ledArray1_pin  = 1;
-const int ledArray2_pin  = 2;
-const int ledArray3_pin  = 3;
+const int button_pin       =   0;
+const int ledArray1_pin    =   1;
+const int ledArray2_pin    =   2;
+const int ledArray3_pin    =   3;
 
-int currentMode          = 0;
-int buttonState_current  = 0;
-int buttonState_previous = 0;
+int currentMode            =   0;
+int buttonState_current    =   0;
+int buttonState_previous   =   0;
+int pulseState             = LOW;
+
+const long pulseRate       = 500; 
+
+unsigned long currentTime  =   0;
+unsigned long previousTime =   0; 
+
 
 
 void setup() {
@@ -36,31 +43,43 @@ void setup() {
 
 void loop() {
   buttonState_current  = digitalRead(button_pin);
-  if(buttonState_current != buttonState_previous){
-    All_Off();
-    if(currentMode == 3){
-      currentMode=0;
-    } 
-    else{
-      currentMode++;
-    }
-    
+  currentTime          = millis();
+
+  if(timeDelta(currentTime, previousTime) >= pulseRate){
     if(currentMode == 0){
-      digitalWrite(ledArray1_pin, HIGH);
+      //All off
     }
     if(currentMode == 1){
-      digitalWrite(ledArray2_pin, HIGH);
+      if(pulseState == LOW){pulseState = HIGH;}
+                       else{pulseState = LOW;}
+      digitalWrite(ledArray1_pin, pulseState);
     }
     if(currentMode == 2){
-      digitalWrite(ledArray3_pin, HIGH);
+      if(pulseState == LOW){pulseState = HIGH;}
+                       else{pulseState = LOW;}
+      digitalWrite(ledArray2_pin, pulseState);
     }
     if(currentMode == 3){
-      // Do nothing, as All_Off is triggered by default.
-    }
-    delay(50);
-  }  
-    
+      if(pulseState == LOW){pulseState = HIGH;}
+                       else{pulseState = LOW;}
+      digitalWrite(ledArray3_pin, pulseState);
+    }    
+  }
+
+  if(buttonState_current != buttonState_previous){
+    if(currentMode == 3){currentMode = 0;}
+    else{currentMode++;}
+    All_Off();   
+  }
+
+  
+  previousTime         = currentTime;
   buttonState_previous = buttonState_current;
+}
+
+unsigned long timeDelta(long t2, long t1){
+  int diff = t2 - t1;
+  return diff;
 }
 
 void All_Off(){
