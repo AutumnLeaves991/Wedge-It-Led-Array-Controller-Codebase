@@ -17,10 +17,10 @@
  * 3      LedArray3 Pulse
 */
 
-const int button_pin       =   0;
-const int ledArray1_pin    =   1;
-const int ledArray2_pin    =   2;
-const int ledArray3_pin    =   3;
+const int button_pin       =   2;
+const int ledArray1_pin    =   3;
+const int ledArray2_pin    =   4;
+const int ledArray3_pin    =   5;
 
 int currentMode            =   0;
 int buttonState_current    =   0;
@@ -35,6 +35,8 @@ unsigned long previousTime =   0;
 
 
 void setup() {
+  Serial.begin(9600);
+  Serial.println("Device ON");
   pinMode(button_pin,     INPUT);
   pinMode(ledArray1_pin, OUTPUT);
   pinMode(ledArray2_pin, OUTPUT);
@@ -44,6 +46,9 @@ void setup() {
 void loop() {
   buttonState_current  = digitalRead(button_pin);
   currentTime          = millis();
+//  Serial.println(buttonState_current);
+
+//  Serial.println(timeDelta(currentTime, previousTime)); //Debug
 
   if(timeDelta(currentTime, previousTime) >= pulseRate){
     if(currentMode == 0){
@@ -66,7 +71,8 @@ void loop() {
     }    
   }
 
-  if(buttonState_current != buttonState_previous){
+  if((buttonState_current == 1) && (buttonState_current != buttonState_previous)){
+    Serial.println(currentMode);
     if(currentMode == 3){currentMode = 0;}
     else{currentMode++;}
     All_Off();   
