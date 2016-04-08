@@ -4,7 +4,7 @@
  * https://creativecommons.org/licenses/by-sa/3.0/
  * 
  * Douglas M. Reilly
- * 4/7/2016
+ * 4/8/2016
 */
 
 
@@ -41,27 +41,7 @@ void setup() {
   pinMode(ledArray1_pin, OUTPUT);
   pinMode(ledArray2_pin, OUTPUT);
   pinMode(ledArray3_pin, OUTPUT);
-  
-  digitalWrite(ledArray1_pin, HIGH);
-  delay(500);
-  digitalWrite(ledArray2_pin, HIGH);
-  delay(500);
-  digitalWrite(ledArray3_pin, HIGH);
-  delay(500);
-  All_Off();
-  for(int i = 0;i < 10;i++){
-   All_On();
-   delay(50);
-   All_Off();
-   delay(50); 
-  }
-  delay(100);
-  for(int i = 0;i < 2;i++){
-   All_On();
-   delay(50);
-   All_Off();
-   delay(50); 
-  }  
+  Startup_Sequence();
 }
 
 void loop() {
@@ -120,5 +100,25 @@ void All_On(){
   digitalWrite(ledArray2_pin, HIGH);
   digitalWrite(ledArray3_pin, HIGH);
 }
-
-
+void Startup_Sequence(){
+  digitalWrite(ledArray1_pin, HIGH);
+  delay(500);
+  digitalWrite(ledArray2_pin, HIGH);
+  delay(500);
+  digitalWrite(ledArray3_pin, HIGH);
+  delay(500);
+  All_Off();
+  for(int i = 0;i < 10;i++){
+   All_On();
+   delay(50);
+   All_Off();
+   delay(50); 
+  }
+  delay(100);
+  for(int i = 0;i < 2;i++){
+   All_On();
+   delay(50);
+   All_Off();
+   delay(50); 
+  }  
+}
