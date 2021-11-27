@@ -3,7 +3,7 @@
  * Attribution Share-Alike 3.0 License
  * https://creativecommons.org/licenses/by-sa/3.0/
  * 
- * Douglas M. Reilly
+ * Autumn Reilly
  * 4/8/2016
 */
 
